@@ -1,0 +1,63 @@
+MongoDB Schema
+
+ACCOUNT (all apps)
+
+_id
+email
+password
+account
+userID
+fbID
+fbToken
+
+- SignIn(email, password, *account, userID)
+- LogIn (email/account, password)
+- FBSignIn (fbId, fbToken, email)
+- ChangePassword (token, userID, password, newPassword)
+
+(-) ResetPassword (mandar email)
+(-) DeleteAccount
+(-) Logout
+
+USER (swapped)
+
+_id
+fullname
+email
+account
+(company)
+(profession)
+(phone)
+
+(contact_ids)
+
+- Create User (fullname, email, account, password) - performs signIn in success case
+- UpdateUser (fullname, email, company, profession, phone)
+- GetUserProfile (user_id) -> (user_id, fullname, email, company, profession, phone)
+- AddContact (user_id, contact_id)
+- RemoveContact (user_id, contact_id)
+- GetContacts (user_id) -> (contact_ids) *verificar se os contatos foram aceitos
+- GetContactRequest (user_id) -> (contact_users)
+
+(link com exemplo de como implementar friends no mongodb http://stackoverflow.com/questions/6183147/storing-friend-relationships-in-mongodb)
+
+USER LOCATION
+* Representa as posições geográficas dos usuários quando os mesmos usam o app. Uma UserLocation tem validade de 15 minutos. Quando uma nova localização é adicionada ao banco, a localização antiga deve ser deleetada.
+
+SCHEME
+
+_id
+timestamp
+location {
+    type: "Point",
+	coordinates: [-73.856077, 40.848447]
+}
+user{
+	user_id
+	fullname
+	profession
+	company
+}
+- Update Location
+- GetNearbyUsers
+(link para tutorial geoLocation no mongoDB https://docs.mongodb.org/manual/tutorial/geospatial-tutorial/)	

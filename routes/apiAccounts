@@ -1,0 +1,133 @@
+var config = config = require("../config");
+var ObjectId = require('mongodb').ObjectID;
+var mongoose = require('mongoose');
+var accountSchema = require('../models/account');
+
+var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
+
+const saltRounds = 4;
+
+var Account = accountSchema.Account;
+var apiAccounts = this;
+
+exports.singIn = function (req, res) {
+    var account = new Account(req);
+    // encrypta senha
+    bcrypt.hash(account.password, saltRounds, function(err, hash) {
+      account.password = hash;
+
+      account.save(function (err) {
+        if (err) return handleError(err);
+
+        return res.json({success: true, message: 'Usuário cadastrado com sucesso!'});
+      })
+    });
+};
+
+exports.login = function (req, res) {
+  var login = req.body.email || req.body.account;
+
+  // Procura usuario no banco
+  var query = {$or: [ {email : login}, {account : login} ] };
+
+  Account.findOne( query, function(err, account) {
+
+    if (err) throw err;
+
+    if (!account) {
+      // account nao encontrado
+      return res.json({success: false, message: 'Falha na autenticação. Conta não encontrada.'});
+
+    } 
+    else if (account) {
+      // compara passwords (com criptografia)
+      bcrypt.compare(req.body.password, account.password, function(err, match) {
+        if(!match){
+          // passwords nao batem
+          return res.json({success: false, message: 'Falha na autenticação. Senha incorreta.'});
+        }
+        else{
+          // account e password batem
+          // cria token
+          var token = jwt.sign(account.toObject(), config.apiSecret, {
+            expiresIn: 1440*60 // expires in 24 hours
+          });
+
+          return res.json({
+            success : true,
+            message : 'sucesso no login.',
+            token : token,
+            userID : account.userID
+          });
+        }
+      });
+    }
+  });
+};
+
+exports.authenticate = function(req, res, next) {
+
+  // check header or url parameters or post parameters for token
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+  // decode token
+  if (token) {
+
+    // verifies secret and checks exp
+    jwt.verify(token, config.apiSecret, function(err, decoded) {      
+      if (err) {
+        return res.status(403).json({ success: false, message: 'Falha na autenticação do token.' });    
+      } 
+      else {
+        // if everything is good, save the request for use in other routes
+        req.decoded = decoded;    
+        next();
+      }
+    });
+
+  } else {
+
+    // if there is no token
+    // return an error
+    return res.status(403).json({ success: false, message: 'Nenhum token fornecido.' });    
+
+  }
+};
+
+exports.changePassword = function (req, res) {
+    var userID = mongoose.Types.ObjectId(req.body.userID);
+
+    // Procura usuario no banco
+    Account.findOne( {userID : userID}, function(err, account) {
+
+      if (err) throw err;
+
+      if (!account) {
+        // account nao encontrado
+        return res.json({ success: false, message: 'Conta não encontrada.' });    
+
+      } 
+      else if (account) {
+        // compara passwords (com criptografia)
+        bcrypt.compare(req.body.password, account.password, function(err, match) {
+          if(!match){
+            // passwords nao batem
+            return res.json({ success: false, message: 'Falha na autenticação. Senha incorreta.' });    
+          }
+          else{
+            // account e password batem
+            // Encrypta password
+            bcrypt.hash(req.body.newPassword, saltRounds, function(err, hash) {
+              account.password = hash;
+              account.save(function (err) {
+                if (err) return handleError(err);
+
+                return res.json({ success: true, message: 'Senha alterada com sucesso!' });    
+              });
+            });
+          }
+        });
+      }
+    });
+  }
