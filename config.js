@@ -3,7 +3,7 @@ var mongoURI;
 
 // development only
 if (env === 'development') {
-  exports.mongoURI = 'mongodb://localhost/27017';
+  exports.mongoURI = 'mongodb://localhost/interusp';
 }
 
 // production only

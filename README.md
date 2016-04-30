@@ -1,10 +1,3 @@
-# Links do projeto
-
-## Tutorial sobre versionamento: https://github.com/Ricardo-Mutti/AppSimplesWIKI/wiki/Versionamento-GIT
-
-## Outros repositorios
-
-
 # Backend Swapped (MEAN - MongoDB, Express.js, Angular.js, Node.js)
 
 ## Instalação
