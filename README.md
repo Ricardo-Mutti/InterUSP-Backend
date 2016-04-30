@@ -1,4 +1,4 @@
-# Backend Swapped (MEAN - MongoDB, Express.js, Angular.js, Node.js)
+﻿# Backend Swapped (MEAN - MongoDB, Express.js, Angular.js, Node.js)
 
 ## Instalação
 
@@ -171,3 +171,6 @@ obs: nao vai mostrar nenhum resultado no terminal
 
 acesse:
     http://127.0.0.1:8888/rockmongo
+
+Colaboradores:
+Guilherme Adissy
