@@ -3,7 +3,7 @@ var ObjectId = require('mongodb').ObjectID;
 var mongoose = require('mongoose');
 var accountSchema = require('../models/account');
 
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 
 const saltRounds = 4;
@@ -14,14 +14,16 @@ var apiAccounts = this;
 exports.singIn = function (req, res) {
     var account = new Account(req);
     // encrypta senha
-    bcrypt.hash(account.password, saltRounds, function(err, hash) {
-      account.password = hash;
+    bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(account.password, salt, function(err, hash) {
+        account.password = hash;
 
-      account.save(function (err) {
-        if (err) return handleError(err);
+        account.save(function (err) {
+          if (err) return handleError(err);
 
-        return res.json({success: true, message: 'Usuário cadastrado com sucesso!'});
-      })
+          return res.json({success: true, message: 'Usuário cadastrado com sucesso!'});
+        })
+      });
     });
 };
 

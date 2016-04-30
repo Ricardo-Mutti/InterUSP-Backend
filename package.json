@@ -12,7 +12,7 @@
     "mongodb": "^2.0.0",
     "express-error-handler": "^1.1.0",
     "mongoose":"^4.4.10",
-    "bcrypt":"^0.8.5",
+    "bcryptjs":"^2.3.0",
     "jsonwebtoken":"^5.7.0"
   }
 }
