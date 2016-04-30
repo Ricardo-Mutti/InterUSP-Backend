@@ -1,5 +1,5 @@
-# Backend Swapped (MEAN - MongoDB, Express.js, Angular.js, Node.js)
-
+﻿# Backend Swapped (MEAN - MongoDB, Express.js, Angular.js, Node.js)
+Michel Chieregato
 ## Instalação
 
 Dê clone no repositório e execute `npm install` na pasta do projeto para 
