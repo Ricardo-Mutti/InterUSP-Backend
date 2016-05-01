@@ -123,15 +123,15 @@ Utilizamos o modulo https://nodemailer.com/
 admins:
 
   User: root
-  Password: SSSvGALha2Br
+  Password: BJoAxawF0vKT
 
   User: appsimples
   Password: amazonapp123654
 
-banco backendBootstrap:
+banco interusp:
 
-  User: backendBootstrap
-  Password: amazonapp123654
+  User: interusp
+  Password: interusp
 
 ### Acessar o banco
 
@@ -144,15 +144,18 @@ na pasta stack:
 
 ### Public DNS
 
-ec2-54-210-71-210.compute-1.amazonaws.com
-(muda toda vez que reiniciamos o server na AWS)
+ec2-52-201-135-248.compute-1.amazonaws.com
+
+### Instance ID
+
+i-5dfc18c7
 
 ### Para acessar o server via SSH
 
 (só na primeira vez):
-    chmod 400 *path para projeto*/BackendBootstrap/resources/BackendBootstrap.pem
+    chmod 400 *path para projeto*/resources/InterUSP.pem
 
-    ssh -i *path para projeto*/BackendBootstrap/resources/BackendBootstrap.pem ubuntu@ec2-54-210-71-210.compute-1.amazonaws.com
+    ssh -i *path para projeto*/resources/InterUSP.pem ubuntu@ec2-52-201-135-248.compute-1.amazonaws.com
 
 ### Para rodar o projeto na AWS
 
