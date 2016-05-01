@@ -16,3 +16,7 @@ module.exports = function(mongoose){
 
 	return mongoose.model('Local', localSchema);
 }
+<<<<<<< 34c708f6a4bac3d95397958d5a9e4cd0546ab693
+=======
+
+>>>>>>> controller get locais
