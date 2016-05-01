@@ -44,9 +44,7 @@ module.exports = function(){
   //Modulo Jogo
   var jogo = {};
   jogo.controllers = {};
-  jogo.controllers.getJogos = require(__dirname + '/modules/jogo/get-jogos/get-jogos-controller.js')(schema);
-  jogo.controllers.updateJogo = require(__dirname + '/modules/jogo/update-jogo/update-jogo-controller.js')(schema);
-  jogo.controllers.createJogo = require(__dirname + '/modules/jogo/create-jogo/create-jogo-controller.js')(schema);
+  jogo.controllers.jogo = require(__dirname + '/modules/jogo/jogo-controller.js')(schema);
 
   //Modulo Faculdade
   var faculdade = {};
