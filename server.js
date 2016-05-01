@@ -56,17 +56,10 @@ module.exports = function(){
   local.controllers = {};
   local.controllers.locais = require(__dirname + '/modules/local/locais-controller.js')(schema);
 
-  //Modulo Faculdade
-  var faculdade = {};
-  faculdade.controllers = {};
-  faculdade.controllers.faculdades = require(__dirname + '/modules/faculdade/faculdade-controller.js')(schema, db.mongoose);
-
   //Modulo Modalidade
   var modalidade = {};
   modalidade.controllers = {};
-  modalidade.controllers.createModalidade = require(__dirname + '/modules/modalidade/create-modalidade/create-modalidade-controller.js')(schema);
-  modalidade.controllers.getModalidades = require(__dirname + '/modules/modalidade/get-modalidades/get-modalidades-controller.js')(schema);
-  modalidade.controllers.updateModalidade = require(__dirname + '/modules/modalidade/update-modalidade/update-modalidade-controller.js')(schema);
+  modalidade.controllers.modalidades = require(__dirname + '/modules/modalidade/modalidade-controller.js')(schema);
 
   // Modulo Onibus
   var onibus = {};
