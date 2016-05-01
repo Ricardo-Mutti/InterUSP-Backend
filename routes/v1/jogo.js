@@ -13,6 +13,7 @@ module.exports = function (moduleJogo) {
       });
       router.post("/jogo/create-jogo", function(req, res) {
         controllers.createJogo.post(req, res);
+<<<<<<< 24ff51e4f3306f5039f8dc148f978ecc624d39b5
 =======
 
 >>>>>>> Adicionado Modelo do Jogo, Controller e Route do Get-Jogos, testado.
@@ -21,6 +22,8 @@ module.exports = function (moduleJogo) {
       router.post("/jogo/update-jogo", function(req, res) {
         controllers.updateJogo.post(req, res);
 >>>>>>> Adicionado Controller do Update Jogo, não foi testado
+=======
+>>>>>>> Controller do Update criado, testado Update, Get e Create
       });
     }
 }

@@ -39,7 +39,7 @@ module.exports = function(){
   user.controllers.signIn = require(__dirname + '/modules/user/sign-in/sign-in-controller.js')(schema, app.bcrypt);
   user.controllers.login = require(__dirname + '/modules/user/login/login-controller.js')(schema, app.bcrypt, app.jwt, app.config);
 
-//Modulo Jogo
+  //Modulo Jogo
   var jogo = {};
   jogo.controllers = {};
   jogo.controllers.getJogos = require(__dirname + '/modules/jogo/get-jogos/get-jogos-controller.js')(schema);
@@ -62,7 +62,7 @@ module.exports = function(){
   faculdade.controllers.faculdades = require(__dirname + '/modules/faculdade/faculdade-controller.js')(schema, db.mongoose);
 
 
-//Rotas
+  //Rotas
   var routes = {};
   routes.routes = require(__dirname + '/routes/router.js')(app.express, routes);
   routes.v1 = {};
@@ -70,7 +70,7 @@ module.exports = function(){
   routes.v1.local = require(__dirname + '/routes/v1/local.js')(local);
   routes.v1.jogo = require(__dirname + '/routes/v1/jogo.js')(jogo);
   routes.v1.faculdade = require(__dirname + '/routes/v1/faculdade.js')(faculdade);
-  routes.v1.local = require(__dirname + '/routes/v1/local.js')(local);
+
 
 
 
