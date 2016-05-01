@@ -3,9 +3,13 @@ module.exports = function (schema, mongoose){
   var Faculdade = schema.faculdade;
   return {
     get: function(req, res){
-      Faculdade.
-      find().
-      exec(function (err, dbFaculdades){
+
+      var query = {};
+
+      if(req.query.id) query._id = req.query.id;
+      if(req.query.nome) query.nome = req.query.nome;
+
+      Faculdade.find(query).exec(function (err, dbFaculdades){
         if (err) throw err;
 
         if (dbFaculdades){
