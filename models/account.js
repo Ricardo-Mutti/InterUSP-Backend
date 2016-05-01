@@ -1,13 +1,11 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+module.exports = function(mongoose){
 
-var accountSchema = new Schema({
-	email: String,
-	password: String,
-	account: String,
-	userID: Schema.Types.ObjectId,
-	fbID: String,
-	fbToken: String
-});
+	var Schema = mongoose.Schema;
 
-exports.Account = mongoose.model('Account', accountSchema);
+	var accountSchema = new Schema({
+		login: String,
+		password: String
+	});
+
+	return mongoose.model('Account', accountSchema);
+}
