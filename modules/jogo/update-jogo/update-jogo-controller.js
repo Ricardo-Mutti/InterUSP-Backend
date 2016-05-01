@@ -27,8 +27,8 @@ module.exports = function(schema) {
 
       Jogo.findOneAndUpdate(query, update, function(err, numAffected) {
         if (err) throw err;
-        if (numAffected > 0) return res.json({success: true, message: "Jogo atualizado!"});
-        else return res.json({success: false, message: "Jogo não atualizado!"})
+        if (numAffected === 0) return res.json({success: true, message: "Jogo atualizado!"});
+        else return res.json({success: false, message: numAffected})
       });
     }
   }

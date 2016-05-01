@@ -9,5 +9,8 @@ module.exports = function (moduleJogo) {
       router.post("/jogo/update-jogo", function(req, res) {
         controllers.updateJogo.post(req, res);
       });
+      router.post("/jogo/create-jogo", function(req, res) {
+        controllers.createJogo.post(req, res);
+      });
     }
 }

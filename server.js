@@ -50,7 +50,11 @@ module.exports = function(){
   jogo.controllers = {};
   jogo.controllers.getJogos = require(__dirname + '/modules/jogo/get-jogos/get-jogos-controller.js')(schema);
   jogo.controllers.updateJogo = require(__dirname + '/modules/jogo/update-jogo/update-jogo-controller.js')(schema);
+<<<<<<< c3133b511a56763344b1a1c5b6141b46f2fb836a
 
+=======
+  jogo.controllers.createJogo = require(__dirname + '/modules/jogo/create-jogo/create-jogo-controller.js')(schema);
+>>>>>>> Controller do Update criado, testado Update, Get e Create
   //Rotas
   var routes = {};
   routes.routes = require(__dirname + '/routes/router.js')(app.express, routes);
