@@ -32,13 +32,13 @@ module.exports = function(){
   schema.local = require(__dirname + '/models/local.js')(db.mongoose);
   schema.jogo = require(__dirname + '/models/jogo.js')(db.mongoose);
   schema.faculdade = require(__dirname + '/models/faculdade.js')(db.mongoose);
+  schema.modalidade = require(__dirname + '/models/modalidade.js')(db.mongoose);
 
   //Modulo User
   var user = {};
   user.controllers = {};
   user.controllers.signIn = require(__dirname + '/modules/user/sign-in/sign-in-controller.js')(schema, app.bcrypt);
   user.controllers.login = require(__dirname + '/modules/user/login/login-controller.js')(schema, app.bcrypt, app.jwt, app.config);
-
 
   //Modulo Jogo
   var jogo = {};
@@ -62,6 +62,12 @@ module.exports = function(){
   faculdade.controllers = {};
   faculdade.controllers.faculdades = require(__dirname + '/modules/faculdade/faculdade-controller.js')(schema, db.mongoose);
 
+  //Modulo Modalidade
+  var modalidade = {};
+  modalidade.controllers = {};
+  modalidade.controllers.createModalidade = require(__dirname + '/modules/modalidade/create-modalidade/create-modalidade-controller.js')(schema);
+  modalidade.controllers.getModalidades = require(__dirname + '/modules/modalidade/get-modalidades/get-modalidades-controller.js')(schema);
+  modalidade.controllers.updateModalidade = require(__dirname + '/modules/modalidade/update-modalidade/update-modalidade-controller.js')(schema);
 
   //Rotas
   var routes = {};
@@ -71,9 +77,7 @@ module.exports = function(){
   routes.v1.local = require(__dirname + '/routes/v1/local.js')(local);
   routes.v1.jogo = require(__dirname + '/routes/v1/jogo.js')(jogo);
   routes.v1.faculdade = require(__dirname + '/routes/v1/faculdade.js')(faculdade);
-  routes.v1.local = require(__dirname + '/routes/v1/local.js')(local);
-
-
+  routes.v1.modalidade = require(__dirname + '/routes/v1/modalidade.js')(modalidade);
 
 
   return {
