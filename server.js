@@ -31,7 +31,7 @@ module.exports = function(){
   schema.account = require(__dirname + '/models/account.js')(db.mongoose);
   schema.local = require(__dirname + '/models/local.js')(db.mongoose);
   schema.jogo = require(__dirname + '/models/jogo.js')(db.mongoose);
-
+  schema.faculdade = require(__dirname + '/models/faculdade.js')(db.mongoose);
 
   //Modulo User
   var user = {};
@@ -39,22 +39,30 @@ module.exports = function(){
   user.controllers.signIn = require(__dirname + '/modules/user/sign-in/sign-in-controller.js')(schema, app.bcrypt);
   user.controllers.login = require(__dirname + '/modules/user/login/login-controller.js')(schema, app.bcrypt, app.jwt, app.config);
 
-  // Modulo Local
-  var local = {};
-  local.controllers = {};
-  local.controllers.locais = require(__dirname + '/modules/local/locais-controller.js')(schema);
-
 
   //Modulo Jogo
   var jogo = {};
   jogo.controllers = {};
   jogo.controllers.getJogos = require(__dirname + '/modules/jogo/get-jogos/get-jogos-controller.js')(schema);
   jogo.controllers.updateJogo = require(__dirname + '/modules/jogo/update-jogo/update-jogo-controller.js')(schema);
-<<<<<<< c3133b511a56763344b1a1c5b6141b46f2fb836a
-
-=======
   jogo.controllers.createJogo = require(__dirname + '/modules/jogo/create-jogo/create-jogo-controller.js')(schema);
->>>>>>> Controller do Update criado, testado Update, Get e Create
+
+  //Modulo Faculdade
+  var faculdade = {};
+  faculdade.controllers = {};
+  faculdade.controllers.faculdades = require(__dirname + '/modules/faculdade/faculdade-controller.js')(schema, db.mongoose);
+
+  // Modulo Local
+  var local = {};
+  local.controllers = {};
+  local.controllers.locais = require(__dirname + '/modules/local/locais-controller.js')(schema);
+
+  //Modulo Faculdade
+  var faculdade = {};
+  faculdade.controllers = {};
+  faculdade.controllers.faculdades = require(__dirname + '/modules/faculdade/faculdade-controller.js')(schema, db.mongoose);
+
+
   //Rotas
   var routes = {};
   routes.routes = require(__dirname + '/routes/router.js')(app.express, routes);
@@ -62,6 +70,10 @@ module.exports = function(){
   routes.v1.user = require(__dirname + '/routes/v1/user.js')(user);
   routes.v1.local = require(__dirname + '/routes/v1/local.js')(local);
   routes.v1.jogo = require(__dirname + '/routes/v1/jogo.js')(jogo);
+  routes.v1.faculdade = require(__dirname + '/routes/v1/faculdade.js')(faculdade);
+  routes.v1.local = require(__dirname + '/routes/v1/local.js')(local);
+
+
 
 
   return {
