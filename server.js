@@ -31,6 +31,7 @@ module.exports = function(){
   schema.account = require(__dirname + '/models/account.js')(db.mongoose);
   schema.local = require(__dirname + '/models/local.js')(db.mongoose);
   schema.jogo = require(__dirname + '/models/jogo.js')(db.mongoose);
+  schema.faculdade = require(__dirname + '/models/faculdade.js')(db.mongoose);
 
 
   //Modulo User
@@ -50,11 +51,13 @@ module.exports = function(){
   jogo.controllers = {};
   jogo.controllers.getJogos = require(__dirname + '/modules/jogo/get-jogos/get-jogos-controller.js')(schema);
   jogo.controllers.updateJogo = require(__dirname + '/modules/jogo/update-jogo/update-jogo-controller.js')(schema);
-<<<<<<< c3133b511a56763344b1a1c5b6141b46f2fb836a
-
-=======
   jogo.controllers.createJogo = require(__dirname + '/modules/jogo/create-jogo/create-jogo-controller.js')(schema);
->>>>>>> Controller do Update criado, testado Update, Get e Create
+
+  //Modulo User
+  var faculdade = {};
+  faculdade.controllers = {};
+  faculdade.controllers.getAll = require(__dirname + '/modules/faculdade/get-all/get-all-controller.js')(schema);
+
   //Rotas
   var routes = {};
   routes.routes = require(__dirname + '/routes/router.js')(app.express, routes);
@@ -62,6 +65,7 @@ module.exports = function(){
   routes.v1.user = require(__dirname + '/routes/v1/user.js')(user);
   routes.v1.local = require(__dirname + '/routes/v1/local.js')(local);
   routes.v1.jogo = require(__dirname + '/routes/v1/jogo.js')(jogo);
+  routes.v1.faculdade = require(__dirname + '/routes/v1/faculdade.js')(faculdade);
 
 
   return {
