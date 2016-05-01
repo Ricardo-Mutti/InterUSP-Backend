@@ -8,7 +8,6 @@
   "author": "Rafael Augusto Brandão (brandaorafael), Rafael Camargos Santos (rafaelcamargossanto), Bruno de Oliveira Arakaki (brunoarakaki), Felipe GOnçalves Marques (felipegoncalvesmarques)",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^0.8.5",
     "body-parser": "^1.13.3",
     "cradle": "^0.6.9",
     "ejs": "^2.3.4",
