@@ -62,7 +62,7 @@ module.exports = function(){
   faculdade.controllers.faculdades = require(__dirname + '/modules/faculdade/faculdade-controller.js')(schema, db.mongoose);
 
 
-  //Rotas
+//Rotas
   var routes = {};
   routes.routes = require(__dirname + '/routes/router.js')(app.express, routes);
   routes.v1 = {};
