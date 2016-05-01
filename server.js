@@ -64,8 +64,9 @@ module.exports = function(){
 
   //Modulo Modalidade
   var modalidade = {};
+  modalidade.controllers = {};
   modalidade.controllers.createModalidade = require(__dirname + '/modules/modalidade/create-modalidade/create-modalidade-controller.js')(schema);
-  modalidade.controllers.getModalidades = require(__dirname + '/modules/modalidade/get-modalidades/get-modalidades-controller.js');
+  modalidade.controllers.getModalidades = require(__dirname + '/modules/modalidade/get-modalidades/get-modalidades-controller.js')(schema);
 
 
   //Rotas
