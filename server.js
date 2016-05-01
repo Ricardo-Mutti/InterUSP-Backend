@@ -19,6 +19,7 @@ module.exports = function(){
   //
   app.config = require('./config');
 
+
   //Db
   var db = {};
   db.mongo = require('mongodb').MongoClient;
