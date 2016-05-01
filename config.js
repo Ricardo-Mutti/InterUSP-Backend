@@ -8,7 +8,7 @@ if (env === 'development') {
 
 // production only
 else if (env === 'production') {
-  // mongoURI = 'mongodb://backendBootstrap:amazonapp123654@ec2-52-90-169-151.compute-1.amazonaws.com:27017/backendBootstrap';
+  mongoURI = 'mongodb://interusp:interusp@ec2-52-90-169-151.compute-1.amazonaws.com:27017/interusp';
 }
 
-exports.apiSecret = 'appsimples-swapped-api-secret';
+exports.apiSecret = 'appsimples-interusp-api-secret';
