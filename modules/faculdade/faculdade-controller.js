@@ -1,4 +1,4 @@
-module.exports = function (schema){
+module.exports = function (schema, mongoose){
 
   var Faculdade = schema.faculdade;
   return {
@@ -17,6 +17,16 @@ module.exports = function (schema){
         }
       });
     },
-    
+    post: function(req, res){
+
+      var faculdadeId = req.body._id ? req.body._id : new mongoose.Types.ObjectId;
+      var faculdadeAttributes = req.body;
+      Faculdade.findByIdAndUpdate(faculdadeId, faculdadeAttributes, {upsert: true}, function(err, data){
+
+        if (err) throw err;
+        return res.json({success: true, message: "Faculdade criada"});
+
+      });
+    }
   }
 }

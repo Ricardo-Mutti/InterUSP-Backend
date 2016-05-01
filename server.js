@@ -53,10 +53,10 @@ module.exports = function(){
   jogo.controllers.updateJogo = require(__dirname + '/modules/jogo/update-jogo/update-jogo-controller.js')(schema);
   jogo.controllers.createJogo = require(__dirname + '/modules/jogo/create-jogo/create-jogo-controller.js')(schema);
 
-  //Modulo User
+  //Modulo Faculdade
   var faculdade = {};
   faculdade.controllers = {};
-  faculdade.controllers.getAll = require(__dirname + '/modules/faculdade/get-all/get-all-controller.js')(schema);
+  faculdade.controllers.faculdades = require(__dirname + '/modules/faculdade/faculdade-controller.js')(schema, db.mongoose);
 
   //Rotas
   var routes = {};
