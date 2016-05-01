@@ -62,6 +62,10 @@ module.exports = function(){
   faculdade.controllers = {};
   faculdade.controllers.faculdades = require(__dirname + '/modules/faculdade/faculdade-controller.js')(schema, db.mongoose);
 
+  //Modulo Modalidade
+  var modalidade = {};
+  modalidade.controllers.createModalidade = require(__dirname + '/modules/modalidade/create-modalidade/create-modalidade-controller.js')(schema);
+
 
   //Rotas
   var routes = {};
