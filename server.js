@@ -33,6 +33,7 @@ module.exports = function(){
   schema.jogo = require(__dirname + '/models/jogo.js')(db.mongoose);
   schema.faculdade = require(__dirname + '/models/faculdade.js')(db.mongoose);
   schema.modalidade = require(__dirname + '/models/modalidade.js')(db.mongoose);
+  schema.onibus = require(__dirname + '/models/onibus.js')(db.mongoose);
 
   //Modulo User
   var user = {};
@@ -69,6 +70,11 @@ module.exports = function(){
   modalidade.controllers.getModalidades = require(__dirname + '/modules/modalidade/get-modalidades/get-modalidades-controller.js')(schema);
   modalidade.controllers.updateModalidade = require(__dirname + '/modules/modalidade/update-modalidade/update-modalidade-controller.js')(schema);
 
+  // Modulo Onibus
+  var onibus = {};
+  onibus.controllers = {};
+  onibus.controllers.onibus = require(__dirname + '/modules/onibus/onibus-controller.js')(schema);
+
   //Rotas
   var routes = {};
   routes.routes = require(__dirname + '/routes/router.js')(app.express, routes);
@@ -78,7 +84,7 @@ module.exports = function(){
   routes.v1.jogo = require(__dirname + '/routes/v1/jogo.js')(jogo);
   routes.v1.faculdade = require(__dirname + '/routes/v1/faculdade.js')(faculdade);
   routes.v1.modalidade = require(__dirname + '/routes/v1/modalidade.js')(modalidade);
-
+  routes.v1.onibus = require(__dirname + '/routes/v1/onibus.js')(onibus);
 
   return {
     app: app,
