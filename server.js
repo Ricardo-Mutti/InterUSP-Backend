@@ -15,6 +15,8 @@ module.exports = function(){
   //
   app.bcrypt = require('bcryptjs');
   //
+  app.jwt = require('jsonwebtoken');
+  //
   app.config = require('./config'); 
 
   //Db
@@ -32,6 +34,7 @@ module.exports = function(){
   var user = {};
   user.controllers = {};
   user.controllers.signIn = require(__dirname + '/modules/user/sign-in/sign-in-controller.js')(schema, app.bcrypt);
+  user.controllers.login = require(__dirname + '/modules/user/login/login-controller.js')(schema, app.bcrypt, app.jwt, app.config);
 
   //Rotas
   var routes = {};
