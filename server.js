@@ -30,6 +30,7 @@ module.exports = function(){
   var schema = {};
   schema.account = require(__dirname + '/models/account.js')(db.mongoose);
   schema.local = require(__dirname + '/models/local.js')(db.mongoose);
+  schema.tracking = require(__dirname + '/models/tracking.js')(db.mongoose);
 
   //Modulo User
   var user = {};
@@ -42,12 +43,18 @@ module.exports = function(){
   local.controllers = {};
   local.controllers.locais = require(__dirname + '/modules/local/locais-controller.js')(schema);
 
+  // Modulo Local
+  var tracking = {};
+  tracking.controllers = {};
+  tracking.controllers.tracking = require(__dirname + '/modules/tracking/tracking-controller.js')(schema, db.mongoose);
+
   //Rotas
   var routes = {};
   routes.routes = require(__dirname + '/routes/router.js')(app.express, routes);
   routes.v1 = {};
   routes.v1.user = require(__dirname + '/routes/v1/user.js')(user);
   routes.v1.local = require(__dirname + '/routes/v1/local.js')(local);
+  routes.v1.tracking = require(__dirname + '/routes/v1/tracking.js')(tracking);
 
   return {
     app: app,
