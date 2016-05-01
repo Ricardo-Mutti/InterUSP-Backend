@@ -65,6 +65,7 @@ module.exports = function(){
   //Modulo Modalidade
   var modalidade = {};
   modalidade.controllers.createModalidade = require(__dirname + '/modules/modalidade/create-modalidade/create-modalidade-controller.js')(schema);
+  modalidade.controllers.getModalidades = require(__dirname + '/modules/modalidade/get-modalidades/get-modalidades-controller.js');
 
 
   //Rotas
@@ -75,8 +76,7 @@ module.exports = function(){
   routes.v1.local = require(__dirname + '/routes/v1/local.js')(local);
   routes.v1.jogo = require(__dirname + '/routes/v1/jogo.js')(jogo);
   routes.v1.faculdade = require(__dirname + '/routes/v1/faculdade.js')(faculdade);
-
-
+  routes.v1.modalidade = require(__dirname + '/routes/v1/modalidade.js')(modalidade);
 
 
   return {
