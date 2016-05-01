@@ -32,6 +32,7 @@ module.exports = function(){
   schema.local = require(__dirname + '/models/local.js')(db.mongoose);
   schema.jogo = require(__dirname + '/models/jogo.js')(db.mongoose);
   schema.faculdade = require(__dirname + '/models/faculdade.js')(db.mongoose);
+  schema.modalidade = require(__dirname + '/models/modalidade.js')(db.mongoose);
 
   //Modulo User
   var user = {};
