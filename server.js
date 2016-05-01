@@ -33,6 +33,8 @@ module.exports = function(){
   schema.jogo = require(__dirname + '/models/jogo.js')(db.mongoose);
   schema.faculdade = require(__dirname + '/models/faculdade.js')(db.mongoose);
   schema.modalidade = require(__dirname + '/models/modalidade.js')(db.mongoose);
+  schema.tracking = require(__dirname + '/models/tracking.js')(db.mongoose);
+
 
   //Modulo User
   var user = {};
@@ -57,6 +59,7 @@ module.exports = function(){
   local.controllers = {};
   local.controllers.locais = require(__dirname + '/modules/local/locais-controller.js')(schema);
 
+
   //Modulo Faculdade
   var faculdade = {};
   faculdade.controllers = {};
@@ -69,6 +72,12 @@ module.exports = function(){
   modalidade.controllers.getModalidades = require(__dirname + '/modules/modalidade/get-modalidades/get-modalidades-controller.js')(schema);
   modalidade.controllers.updateModalidade = require(__dirname + '/modules/modalidade/update-modalidade/update-modalidade-controller.js')(schema);
 
+  // Modulo Tracking
+  var tracking = {};
+  tracking.controllers = {};
+  tracking.controllers.tracking = require(__dirname + '/modules/tracking/tracking-controller.js')(schema, db.mongoose);
+
+
   //Rotas
   var routes = {};
   routes.routes = require(__dirname + '/routes/router.js')(app.express, routes);
@@ -78,6 +87,7 @@ module.exports = function(){
   routes.v1.jogo = require(__dirname + '/routes/v1/jogo.js')(jogo);
   routes.v1.faculdade = require(__dirname + '/routes/v1/faculdade.js')(faculdade);
   routes.v1.modalidade = require(__dirname + '/routes/v1/modalidade.js')(modalidade);
+  routes.v1.tracking = require(__dirname + '/routes/v1/tracking.js')(tracking);
 
 
   return {
