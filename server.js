@@ -14,13 +14,14 @@ module.exports = function(){
   app.methodOverride  = require('method-override');
   //
   app.bcrypt = require('bcryptjs');
+  //
+  app.config = require('./config'); 
 
   //Db
   var db = {};
   db.mongo = require('mongodb').MongoClient;
-  db.mongoURI = 'mongodb://localhost:27017/interusp';
   db.mongoose = require('mongoose');
-  db.mongoose.connect(db.mongoURI);
+  db.mongoose.connect(app.config.mongoURI);
   db.mongoose.connection.on('error', console.error);
 
   //Schema
