@@ -57,6 +57,11 @@ module.exports = function(){
   local.controllers = {};
   local.controllers.locais = require(__dirname + '/modules/local/locais-controller.js')(schema);
 
+  //Modulo Faculdade
+  var faculdade = {};
+  faculdade.controllers = {};
+  faculdade.controllers.faculdades = require(__dirname + '/modules/faculdade/faculdade-controller.js')(schema, db.mongoose);
+
   //Modulo Modalidade
   var modalidade = {};
   modalidade.controllers = {};
@@ -84,9 +89,10 @@ module.exports = function(){
   routes.v1.jogo = require(__dirname + '/routes/v1/jogo.js')(jogo);
   routes.v1.faculdade = require(__dirname + '/routes/v1/faculdade.js')(faculdade);
   routes.v1.modalidade = require(__dirname + '/routes/v1/modalidade.js')(modalidade);
+
   routes.v1.onibus = require(__dirname + '/routes/v1/onibus.js')(onibus);
   routes.v1.tracking = require(__dirname + '/routes/v1/tracking.js')(tracking);
-
+  
   return {
     app: app,
     router: routes.routes
