@@ -49,6 +49,7 @@ module.exports = function(){
   var jogo = {};
   jogo.controllers = {};
   jogo.controllers.getJogos = require(__dirname + '/modules/jogo/get-jogos/get-jogos-controller.js')(schema);
+  jogo.controllers.updateJogo = require(__dirname + '/modules/jogo/update-jogo/update-jogo-controller.js')(schema);
 
   //Rotas
   var routes = {};
