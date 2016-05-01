@@ -4,7 +4,7 @@ module.exports = function(mongoose){
 
 	var faculdadeSchema = new Schema({
 		facul_id: Number,
-		name: String,
+		nome: String,
 		pontuacao_atual:Number,
 		pontuacao_max:Number,
 		pontuacao_min:Number,

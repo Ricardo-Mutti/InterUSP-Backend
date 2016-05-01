@@ -3,13 +3,20 @@ module.exports = function (schema){
   var Faculdade = schema.faculdade;
   return {
     get: function(req, res){
-      Faculdade.find(function (err, dbFaculdades){
-        console.log(dbFaculdades);
+      Faculdade.
+      find().
+      exec(function (err, dbFaculdades){
         if (err) throw err;
+
         if (dbFaculdades){
-          return res.json({'success':true, 'message':'uaisdh', 'resposta':dbFaculdades});
+          if(dbFaculdades.length == 0)
+            return res.json({'success':false, 'message':'Lista de faculdades vazia'});
+          else{
+            return res.json({'success':true, 'message':'Lista de faculdades', 'resposta':dbFaculdades});
+          }
         }
       });
-    }
+    },
+    
   }
 }
