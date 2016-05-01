@@ -29,6 +29,7 @@ module.exports = function(){
   //Schema
   var schema = {};
   schema.account = require(__dirname + '/models/account.js')(db.mongoose);
+  schema.local = require(__dirname + '/models/local.js')(db.mongoose);
 
   //Modulo User
   var user = {};
@@ -36,11 +37,17 @@ module.exports = function(){
   user.controllers.signIn = require(__dirname + '/modules/user/sign-in/sign-in-controller.js')(schema, app.bcrypt);
   user.controllers.login = require(__dirname + '/modules/user/login/login-controller.js')(schema, app.bcrypt, app.jwt, app.config);
 
+  // Modulo Local
+  var local = {};
+  local.controllers = {};
+  local.controllers.locais = require(__dirname + '/modules/local/locais-controller.js')(schema);
+
   //Rotas
   var routes = {};
   routes.routes = require(__dirname + '/routes/router.js')(app.express, routes);
   routes.v1 = {};
   routes.v1.user = require(__dirname + '/routes/v1/user.js')(user);
+  routes.v1.local = require(__dirname + '/routes/v1/local.js')(local);
 
   return {
     app: app,
