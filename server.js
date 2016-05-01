@@ -39,11 +39,6 @@ module.exports = function(){
   user.controllers.signIn = require(__dirname + '/modules/user/sign-in/sign-in-controller.js')(schema, app.bcrypt);
   user.controllers.login = require(__dirname + '/modules/user/login/login-controller.js')(schema, app.bcrypt, app.jwt, app.config);
 
-  // Modulo Local
-  var local = {};
-  local.controllers = {};
-  local.controllers.locais = require(__dirname + '/modules/local/locais-controller.js')(schema);
-
 
   //Modulo Jogo
   var jogo = {};
