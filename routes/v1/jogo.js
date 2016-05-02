@@ -9,8 +9,11 @@ module.exports = function (moduleJogo) {
       router.post("/jogo", function(req, res) {
         controllers.jogo.post(req, res);
       });
-      router.put("/jogo", function(req, res) {
-        controllers.jogo.put(req, res);
+      router.post("/jogo/update-placar", function(req, res) {
+        controllers.jogo.UpdatePlacar(req, res);
+      });
+      router.post("/jogo/update-info", function(req, res) {
+        controllers.jogo.UpdateInfo(req, res);
       });
     }
 }

@@ -24,7 +24,7 @@ module.exports = function(schema) {
       if (numAffected) {
         return res.json({success: true, message: "Jogo atualizado!"});
       }
-      else return res.json({success: false, message: numAffected})
+      else return res.json({success: false, message: "proximo jogo não encontrado."})
     });
 
 
@@ -68,9 +68,9 @@ module.exports = function(schema) {
             if (dbJogos) {
               return res.json({success: true, message: "Jogos!", resposta: dbJogos});
             }
-          });
+          }).sort( { data: 1 } );
     },
-    put: function(req, res) {
+    UpdatePlacar: function(req, res) {
 
       var query = {
         "_id": req.body._id
@@ -84,7 +84,23 @@ module.exports = function(schema) {
         if (numAffected) {
           atualizaProxJogo(numAffected, ganhador, res);
         }
-        else return res.json({success: false, message: numAffected})
+        else return res.json({success: false, message: "jogo não encontrado."})
+      });
+    },
+    UpdateInfo: function(req, res) {
+
+      var query = {
+        "_id": req.body._id
+      };
+
+      var update = req.body;
+
+      Jogo.findOneAndUpdate(query, update, function(err, numAffected) {
+        if (err) throw err;
+        if (numAffected) {
+          return res.json({success: true, message: "Informações do jogo atualizadas!"});
+        }
+        else return res.json({success: false, message: "jogo não encontrado."})
       });
     }
   }
