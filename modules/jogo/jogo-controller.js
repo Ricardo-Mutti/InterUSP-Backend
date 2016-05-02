@@ -62,7 +62,11 @@ module.exports = function(schema) {
     },    
     get: function(req, res) {
 
-          Jogo.find(function(err, dbJogos) {
+          var modalidade_id = req.params.id;
+          console.dir(modalidade_id);
+          query = modalidade_id ? {modalidade_id : modalidade_id} : {};
+
+          Jogo.find(query, function(err, dbJogos) {
             if (err) throw err;
 
             if (dbJogos) {
