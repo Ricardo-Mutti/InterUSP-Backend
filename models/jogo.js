@@ -13,7 +13,11 @@ module.exports = function(mongoose) {
     mandante: Number,
     faculdade_1: Number,
     faculdade_2: Number,
-    chaveamento: Number 
+    chaveamento: Number,
+    is_vencedor: {
+      type: Boolean,
+      default: false
+    }
   });
 
   return mongoose.model('Jogo', jogoSchema);
