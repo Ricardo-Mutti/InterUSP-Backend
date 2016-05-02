@@ -2,8 +2,8 @@ module.exports = function(schema) {
   var Modalidade =  schema.modalidade;
   return {
     post: function(req, res) {
-      var _id =  req.body._id;
-      var query = {_id: _id};
+      var id =  req.body.id;
+      var query = {id: id};
       var update = req.body;
       console.log(update);
       Modalidade.findOneAndUpdate(query, update, function(err, numAffected) {

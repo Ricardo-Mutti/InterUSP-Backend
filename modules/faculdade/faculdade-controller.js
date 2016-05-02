@@ -6,7 +6,7 @@ module.exports = function (schema, mongoose){
 
       var query = {};
 
-      if(req.query.id) query._id = req.query.id;
+      if(req.query.id) query.id = req.query.id;
       if(req.query.nome) query.nome = req.query.nome;
 
       Faculdade.find(query).exec(function (err, dbFaculdades){

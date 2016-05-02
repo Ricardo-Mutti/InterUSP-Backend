@@ -2,15 +2,18 @@ module.exports = function(mongoose) {
   var Schema = mongoose.Schema;
 
   var jogoSchema = new Schema({
-    modalidade_id: Schema.Types.ObjectId,
+    modalidade_id: Number,
     nome: String,
-    participantes: [Schema.Types.ObjectId],
     is_prova: Boolean,
-    colocacao: [{"faculdade": Schema.Types.ObjectId, "posicao": Number}],
-    placar: [Number],
-    data: String,
-    local: Schema.Types.ObjectId,
-    chaveamento: Number
+    data: Date,
+    local: String,
+    colocacao: [Number],
+    placar_1: Number,
+    placar_2: Number,
+    mandante: Number,
+    faculdade_1: Number,
+    faculdade_2: Number,
+    chaveamento: Number 
   });
 
   return mongoose.model('Jogo', jogoSchema);
