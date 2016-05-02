@@ -6,6 +6,9 @@ module.exports = function (moduleJogo) {
       router.get("/jogo", function(req, res) {
           controllers.jogo.get(req, res);
       });
+      router.get("/jogo/modalidade=:id", function(req, res) {
+          controllers.jogo.get(req, res);
+      });
       router.post("/jogo", function(req, res) {
         controllers.jogo.post(req, res);
       });
