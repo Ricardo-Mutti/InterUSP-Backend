@@ -2,7 +2,7 @@ module.exports = function(mongoose){
 	var Schema = mongoose.Schema;
 
 	var onibusSchema = new Schema({
-	  	facul_id: Schema.Types.ObjectId,
+	  	facul_id: Number,
 	  	placa: String,
 	  	informacoes: String
 	});

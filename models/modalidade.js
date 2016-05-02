@@ -2,6 +2,7 @@ module.exports = function(mongoose) {
   var Schema = mongoose.Schema;
 
   var modalidadeSchema = new Schema({
+  	id: Number,
     nome: String,
     colocacao: [{"faculdade": Schema.Types.ObjectId, "posicao": Number}],
     pontuacao_max: [{"faculdade": Schema.Types.ObjectId, "pontuacao": Number}],
