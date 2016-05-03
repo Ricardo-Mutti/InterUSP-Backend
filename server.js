@@ -34,6 +34,8 @@ module.exports = function(){
   schema.faculdade = require(__dirname + '/models/faculdade.js')(db.mongoose);
   schema.modalidade = require(__dirname + '/models/modalidade.js')(db.mongoose);
   schema.onibus = require(__dirname + '/models/onibus.js')(db.mongoose);
+  schema.modalidadeFaculdade = require(__dirname + '/models/modalidadesFaculdade.js')(db.mongoose);
+
 
   //Modulo User
   var user = {};
