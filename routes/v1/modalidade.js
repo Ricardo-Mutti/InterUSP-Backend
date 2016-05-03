@@ -12,5 +12,8 @@ module.exports = function(moduleModalidade) {
       router.get("/modalidade", function(req, res){
         controllers.getModalidades.get(req, res);
       });
+      router.get("/modalidade/faculdade=:id", function(req, res){
+        controllers.getModalidades.getFaculdade(req, res);
+      });
     }
 }
