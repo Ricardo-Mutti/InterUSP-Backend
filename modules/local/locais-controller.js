@@ -7,8 +7,16 @@ module.exports = function (schema){
 			Local.find(function(err, docs){
 		    	if (err) throw err;
 
-		    	return res.json({success: true, message: "Locais encontrados", response:{locais:docs}});
+		    	return res.json({success: true, message: "Locais encontrados", response: docs});
   			});
+		},
+		postLocais: function(req, res){
+			var query = { id: req.body.id };
+			var update = req.body;
+
+			Local.findOneAndUpdate(query, update, {upsert: true, new: true}, function(err, onibus){
+		    	return res.json({success: true, message: "Locais atualizados"});
+			})
 		}
 	}
 }

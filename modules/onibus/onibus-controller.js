@@ -10,13 +10,13 @@ module.exports = function (schema){
 			};
 			var update = req.body;
 
-			Onibus.findOneAndUpdate(query, update, {upsert: true, new: true}, function(err, data){
-		    	return res.json({success: true, message: "Onibus atualizados", response:{Onibus:data}});
+			Onibus.findOneAndUpdate(query, update, {upsert: true, new: true}, function(err, onibus){
+		    	return res.json({success: true, message: "Onibus atualizados"});
 			})
 		},
 		get: function (req, res){
-			Onibus.find(function(err, data){
-		    	return res.json({success: true, message: "Onibus encontrados", response:{Onibus:data}});
+			Onibus.find(function(err, onibus){
+		    	return res.json({success: true, message: "Onibus encontrados", response: onibus});
 			})
 		}
 	}
