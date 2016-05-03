@@ -2,9 +2,9 @@ module.exports = function(schema) {
   var Modalidade =  schema.modalidade;
   var Faculdade = schema.faculdade;
 
-  var faculdadesArrayMax = [8];
-  var faculdadesArrayMin = [8];
-  var faculdadesArrayTotal = [8];
+  var faculdadesArrayMax = [];
+  var faculdadesArrayMin = [];
+  var faculdadesArrayTotal = [];
 
 
   var updateMax = function(modalidade){
@@ -97,7 +97,6 @@ module.exports = function(schema) {
 
   var updateTotal = function(modalidade){
     var TotalArray = modalidade.pontuacao_total;
-    console.dir()
 
     var calculateTotal = function(TotalArray){
       for(i=0 ; i < TotalArray.length ; i++){

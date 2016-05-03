@@ -9,7 +9,7 @@ module.exports = function (schema, mongoose){
       if(req.query.id) query.id = req.query.id;
       if(req.query.nome) query.nome = req.query.nome;
 
-      Faculdade.find(query).exec(function (err, dbFaculdades){
+      Faculdade.find(query, function (err, dbFaculdades){
         if (err) throw err;
 
         if (dbFaculdades){
@@ -19,7 +19,7 @@ module.exports = function (schema, mongoose){
             return res.json({'success':true, 'message':'Lista de faculdades', 'resposta':dbFaculdades});
           }
         }
-      });
+      }).sort( { pontuacao_atual: -1 } );
     },
     post: function(req, res){
 
