@@ -35,7 +35,7 @@ module.exports = function(){
   schema.modalidade = require(__dirname + '/models/modalidade.js')(db.mongoose);
   schema.onibus = require(__dirname + '/models/onibus.js')(db.mongoose);
   schema.modalidadeFaculdade = require(__dirname + '/models/modalidadesFaculdade.js')(db.mongoose);
-
+  schema.tracking = require(__dirname + '/models/tracking.js')(db.mongoose);
 
   //Modulo User
   var user = {};
@@ -58,11 +58,6 @@ module.exports = function(){
   local.controllers = {};
   local.controllers.locais = require(__dirname + '/modules/local/locais-controller.js')(schema);
 
-  //Modulo Faculdade
-  var faculdade = {};
-  faculdade.controllers = {};
-  faculdade.controllers.faculdades = require(__dirname + '/modules/faculdade/faculdade-controller.js')(schema, db.mongoose);
-
   //Modulo Modalidade
   var modalidade = {};
   modalidade.controllers = {};
@@ -75,6 +70,12 @@ module.exports = function(){
   onibus.controllers = {};
   onibus.controllers.onibus = require(__dirname + '/modules/onibus/onibus-controller.js')(schema);
 
+  // Modulo Tracking
+  var tracking = {};
+  tracking.controllers = {};
+  tracking.controllers.tracking = require(__dirname + '/modules/tracking/tracking-controller.js')(schema, db.mongoose);
+
+
   //Rotas
   var routes = {};
   routes.routes = require(__dirname + '/routes/router.js')(app.express, routes);
@@ -85,6 +86,8 @@ module.exports = function(){
   routes.v1.faculdade = require(__dirname + '/routes/v1/faculdade.js')(faculdade);
   routes.v1.modalidade = require(__dirname + '/routes/v1/modalidade.js')(modalidade);
   routes.v1.onibus = require(__dirname + '/routes/v1/onibus.js')(onibus);
+  routes.v1.tracking = require(__dirname + '/routes/v1/tracking.js')(tracking);
+  
 
   return {
     app: app,
