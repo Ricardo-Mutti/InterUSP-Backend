@@ -4,6 +4,7 @@ module.exports = function(schema) {
 
   var faculdadesArrayMax = [8];
   var faculdadesArrayMin = [8];
+  var faculdadesArrayTotal = [8];
 
 
   var updateMax = function(modalidade){
@@ -94,62 +95,62 @@ module.exports = function(schema) {
 
   }
 
-  var updatePontuacao = function(modalidade, res){
-    var colocacaoArray = modalidade.colocacao;
+  var updateTotal = function(modalidade){
+    var TotalArray = modalidade.pontuacao_total;
+    console.dir()
 
-    for(var i=0 ; i < colocacaoArray.length ; i++){
-      var query = {id : colocacaoArray[i].faculdade};
-      var pontuacao = 1;
-      var update = {pontuacao_min: pontuacaoMinArray[i].pontuacao};
+    var calculateTotal = function(TotalArray){
+      for(i=0 ; i < TotalArray.length ; i++){
+        faculdadesArrayTotal.push(TotalArray[i].faculdade);
+      }
 
-      Faculdade.findOneAndUpdate(query, update, function(err, faculdade){
+      Modalidade.find(function(err, modalidades){
         if (err) throw err;
 
-        if (faculdade) callback(modalidade, res);
-        else return res.json({success: false, message: "Erro no update de pontuação mínima de Faculdades!"});
+        for(i=0 ; i < faculdadesArrayTotal.length ; i++){
+          var novaPontuacaoTotal = 0;
+          for(var j=0 ; j < modalidades.length ; j++){
+            var modalidade = modalidades[j];
+            for(var k=0 ; k < modalidade.pontuacao_total.length ; k++){
+              if(modalidade.pontuacao_total[k].faculdade == faculdadesArrayTotal[i]){
+                novaPontuacaoTotal = novaPontuacaoTotal + modalidade.pontuacao_total[k].pontuacao;
+              }
+            }
+          }
+          updateFaculdadeTotal(novaPontuacaoTotal, faculdadesArrayTotal[i]);
+        };
       });
-    };
-  }
+      return true;
+    }
 
-  var calculatePontucao = function(colocacao){
-    switch(colocacao) {
-    case 1:
-        return 13;
-        break;
-    case 2:
-        return 10;
-        break;
-    case 3:
-        return 8;
-        break;
-    case 4:
-        return 6;
-        break;
-    case 5:
-        return 10;
-        break;
-    default:
-        0;
-}
+    var updateFaculdadeTotal = function(novaPontuacaoTotal, faculdade){
+      var query = {id : faculdade};
+      var update = {pontuacao_atual: novaPontuacaoTotal};
+
+      Faculdade.findOneAndUpdate(query, update, function(err, faculdadeDB){
+        if (err) throw err;
+        return true;
+      });
+    }
+
+    calculateTotal(TotalArray);
+
+    return true;
+
   }
 
   var updateFaculdades = function(modalidade, res){
     var success = true;
     sucess = updateMax(modalidade);
+    if(!sucess) return res.json({success: false, message: "Erro na atualização da pontuação máxima."});
     sucess = updateMin(modalidade);
+    if(!sucess) return res.json({success: false, message: "Erro na atualização da pontuação mínima."});
+    else if(modalidade.pontuacao_total.length>0){
+      sucess = updateTotal(modalidade);
+      if(!sucess) return res.json({success: false, message: "Erro na atualização da pontuação total."});
+    }
+    return res.json({success: true, message: "Modalidade atualizada!"});
 
-    if(sucess) return res.json({success: true, message: "Modalidade atualizada!"});
-
-    // updateMax(modalidade, res, function(modalidade, res){
-    //   updateMin(modalidade, res, function(modalidade, res){
-    //     if(modalidade.colocacao.length>0){
-    //       updatePontuacao(modalidade, res, function(){
-    //         return res.json({success: true, message: "Modaliade atualizada!"});
-    //       });
-    //     }
-    //     else return res.json({success: false, message: "Pontuações Máximas e Mínimas atualizadas!"});
-    //   });
-    // });
   }
 
   return {
