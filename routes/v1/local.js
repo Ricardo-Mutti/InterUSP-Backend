@@ -6,5 +6,8 @@ module.exports = function (moduleLocal){
     router.get("/locais", function(req, res){
     	controllers.locais.getLocais(req, res);
     });
+    router.post("/locais", function(req, res){
+    	controllers.locais.postLocais(req, res);
+    });
   }
 }

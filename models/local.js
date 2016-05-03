@@ -2,6 +2,7 @@ module.exports = function(mongoose){
 	var Schema = mongoose.Schema;
 
 	var localSchema = new Schema({
+		id : Number,
 		nome : String,
 		foto : String,
 		endereco : String,
