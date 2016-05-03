@@ -14,9 +14,9 @@ module.exports = function (schema, mongoose){
 
         if (dbFaculdades){
           if(dbFaculdades.length == 0)
-            return res.json({'success':false, 'message':'Lista de faculdades vazia'});
+            return res.json({success: false, message: "Lista de faculdades vazia"});
           else{
-            return res.json({'success':true, 'message':'Lista de faculdades', 'resposta':dbFaculdades});
+            return res.json({success: true, message: "Lista de faculdades", response: dbFaculdades});
           }
         }
       }).sort( { pontuacao_atual: -1 } );
