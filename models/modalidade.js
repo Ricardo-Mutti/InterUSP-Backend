@@ -4,8 +4,7 @@ module.exports = function(mongoose) {
   var modalidadeSchema = new Schema({
   	id: Number,
     nome: String,
-    colocacao: [{"faculdade": Number, "posicao": Number}],
-    pontuacao_total: [{"faculdade": Number, "pontuacao": Number}],
+    pontuacao_total: [{"faculdade": Number, "pontuacao": Number, "posicao": Number}],
     pontuacao_max: [{"faculdade": Number, "pontuacao": Number}],
     pontuacao_min: [{"faculdade": Number, "pontuacao": Number}],
     is_chaveamento: Boolean
