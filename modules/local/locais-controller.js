@@ -7,7 +7,7 @@ module.exports = function (schema){
 			Local.find(function(err, docs){
 		    	if (err) throw err;
 
-		    	return res.json({success: true, message: "Locais encontrados", response:{locais:docs}});
+		    	return res.json({success: true, message: "Locais encontrados", response: docs});
   			});
 		}
 	}
