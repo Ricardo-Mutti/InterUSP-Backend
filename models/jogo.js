@@ -4,6 +4,7 @@ module.exports = function(mongoose) {
   var jogoSchema = new Schema({
     modalidade_id: Number,
     nome: String,
+    descricao: String,
     is_prova: Boolean,
     data: Date,
     local: String,
