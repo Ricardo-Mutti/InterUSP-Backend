@@ -5,8 +5,6 @@ module.exports = function(schema) {
   var atualizaProxJogo = function(jogo, ganhador, res){
     var jogoAtual = jogo.chaveamento;
     var proximoJogo = getProximoChaveamento(jogoAtual);
-
-    console.dir(proximoJogo);
     
     var modalidade = jogo.modalidade;
 
