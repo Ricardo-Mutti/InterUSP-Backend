@@ -20,7 +20,7 @@ module.exports = function (schema, mongoose){
       var faculdadeId = req.body.facul_id;
 
       	//increment user_count for the given facul_id
-	    Tracking.findOneAndUpdate({ facul_id: faculdadeId }, {$inc: {users_count:1}}, {upsert: true, new:true}, function (err, data) {
+	    Tracking.findOneAndUpdate({ facul_id: faculdadeId }, {$inc: {users_count:1}}, {upsert: true}, function (err, data) {
 	        if (err) throw err;
 	        return res.json({success: true, message: "Tracking atualizada", response:data});
       });
