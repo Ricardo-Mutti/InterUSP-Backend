@@ -4,6 +4,7 @@ module.exports = function(mongoose){
 	var localSchema = new Schema({
 		id : Number,
 		nome : String,
+		descricao : String,
 		foto : String,
 		endereco : String,
 		coordenadas : {
