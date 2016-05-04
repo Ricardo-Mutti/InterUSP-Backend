@@ -10,7 +10,7 @@ module.exports = function (schema, mongoose){
           if(trackingRes.length == 0)
             return res.json({success:false, message:"Tracking sem dados disponiveis"});
           else{
-            return res.json({success:true, message:"Tracking de usuarios por faculdade", response:trackingRes});
+            return res.json({success:true, message:"Tracking de usuarios por faculdade", response: {tracking: trackingRes}});
           }
         }
       });
@@ -22,7 +22,7 @@ module.exports = function (schema, mongoose){
       	//increment user_count for the given facul_id
 	    Tracking.findOneAndUpdate({ facul_id: faculdadeId }, {$inc: {users_count:1}}, {upsert: true}, function (err, data) {
 	        if (err) throw err;
-	        return res.json({success: true, message: "Tracking atualizada", response:data});
+	        return res.json({success: true, message: "Tracking atualizada"});
       });
     }
   }

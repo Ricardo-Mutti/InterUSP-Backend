@@ -4,10 +4,10 @@ module.exports = function (schema){
 
 	return{
 		getLocais: function(req, res){
-			Local.find(function(err, docs){
+			Local.find(function(err, locais){
 		    	if (err) throw err;
 
-		    	return res.json({success: true, message: "Locais encontrados", response: docs});
+		    	return res.json({success: true, message: "Locais encontrados", response: {locais: locais}});
   			});
 		},
 		postLocais: function(req, res){
