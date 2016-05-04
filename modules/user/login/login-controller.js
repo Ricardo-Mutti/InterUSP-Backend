@@ -8,7 +8,7 @@ module.exports = function (schema, bcrypt, jwt, config){
       // Procura usuario no banco
       var query = {login: login};
 
-      Account.findOne( query, function(err, account) {
+      Account.findOne(query, function(err, account) {
 
         if (err) throw err;
 
@@ -27,9 +27,7 @@ module.exports = function (schema, bcrypt, jwt, config){
             else{
               // account e password batem
               // cria token
-              var token = jwt.sign(account.toObject(), config.apiSecret, {
-                expiresIn: 1440*60 // expires in 24 hours
-              });
+              var token = jwt.sign(account.toObject(), config.apiSecret);
 
               return res.json({
                 success : true,

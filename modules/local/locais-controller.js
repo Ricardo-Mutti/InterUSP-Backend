@@ -1,6 +1,7 @@
 module.exports = function (schema){
 
 	var Local = schema.local;
+	var autenticacao = require('../autenticacao/autenticacao-controller.js');
 
 	return{
 		getLocais: function(req, res){
@@ -11,12 +12,14 @@ module.exports = function (schema){
   			});
 		},
 		postLocais: function(req, res){
-			var query = { id: req.body.id };
-			var update = req.body;
+			autenticacao.authenticate(req, res, function(){
+				var query = { id: req.body.id };
+				var update = req.body;
 
-			Local.findOneAndUpdate(query, update, {upsert: true, new: true}, function(err, onibus){
-		    	return res.json({success: true, message: "Locais atualizados"});
-			})
+				Local.findOneAndUpdate(query, update, {upsert: true, new: true}, function(err, onibus){
+			    	return res.json({success: true, message: "Locais atualizados"});
+				})
+			});
 		}
 	}
 }

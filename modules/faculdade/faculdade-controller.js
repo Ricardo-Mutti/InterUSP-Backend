@@ -1,6 +1,8 @@
 module.exports = function (schema, mongoose){
 
   var Faculdade = schema.faculdade;
+  var autenticacao = require('../autenticacao/autenticacao-controller.js');
+
   return {
     get: function(req, res){
 
@@ -23,13 +25,15 @@ module.exports = function (schema, mongoose){
     },
     post: function(req, res){
 
-      var faculdadeId = req.body._id ? req.body._id : new mongoose.Types.ObjectId;
-      var faculdadeAttributes = req.body;
-      Faculdade.findByIdAndUpdate(faculdadeId, faculdadeAttributes, {upsert: true}, function(err, data){
+      autenticacao.authenticate(req, res, function(){
+          var faculdadeId = req.body._id ? req.body._id : new mongoose.Types.ObjectId;
+          var faculdadeAttributes = req.body;
+          Faculdade.findByIdAndUpdate(faculdadeId, faculdadeAttributes, {upsert: true}, function(err, data){
 
-        if (err) throw err;
-        return res.json({success: true, message: "Faculdade criada"});
+            if (err) throw err;
+            return res.json({success: true, message: "Faculdade criada"});
 
+          });
       });
     }
   }
