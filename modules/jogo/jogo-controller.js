@@ -68,7 +68,7 @@ module.exports = function(schema) {
             if (err) throw err;
 
             if (dbJogos) {
-              return res.json({success: true, message: "Jogos!", response: dbJogos});
+              return res.json({success: true, message: "Jogos!", response: {jogos: dbJogos}});
             }
           }).sort( { data: 1 } );
     },

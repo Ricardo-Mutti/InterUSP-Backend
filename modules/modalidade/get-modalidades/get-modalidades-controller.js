@@ -8,7 +8,7 @@ module.exports = function(schema) {
       Modalidade.find(function(err, dbModalidades) {
         if (err) throw err;
         if (dbModalidades) {
-          return res.json({success: true, message: "Modalidade!", response: dbModalidades});
+          return res.json({success: true, message: "Modalidade!", response: {modalidades: dbModalidades}});
         }
       });
     },
@@ -40,7 +40,7 @@ module.exports = function(schema) {
                 }
                 arrayModalidades.push(modalidadePorFaculdade);
               }
-              return res.json({success: true, message: "Modalidade!", response: arrayModalidades});
+              return res.json({success: true, message: "Modalidade!", response: {modalidades: arrayModalidades}});
             }
           });
         }

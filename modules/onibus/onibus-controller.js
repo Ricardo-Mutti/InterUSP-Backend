@@ -16,7 +16,7 @@ module.exports = function (schema){
 		},
 		get: function (req, res){
 			Onibus.find(function(err, onibus){
-		    	return res.json({success: true, message: "Onibus encontrados", response: onibus});
+		    	return res.json({success: true, message: "Onibus encontrados", response: {onibus: onibus}});
 			})
 		}
 	}
