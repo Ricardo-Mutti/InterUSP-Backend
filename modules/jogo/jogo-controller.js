@@ -1,6 +1,7 @@
 module.exports = function(schema) {
 
   var Jogo = schema.jogo;
+  var autenticacao = require('../autenticacao/autenticacao-controller.js');
 
   var atualizaProxJogo = function(jogo, ganhador, res){
     var jogoAtual = jogo.chaveamento;
@@ -24,8 +25,6 @@ module.exports = function(schema) {
       }
       else return res.json({success: false, message: "proximo jogo não encontrado."})
     });
-
-
   }
 
   var getProximoChaveamento = function(jogoAtual){
@@ -52,10 +51,12 @@ module.exports = function(schema) {
 
   return {
     post: function(req, res) {
-      var jogo = new Jogo(req.body);
-      jogo.save(function(err) {
-        if (err) throw err;
-        return res.json({success: true, message: "Jogo criado!"});
+      autenticacao.authenticate(req, res, function(){
+        var jogo = new Jogo(req.body);
+        jogo.save(function(err) {
+          if (err) throw err;
+          return res.json({success: true, message: "Jogo criado!"});
+        });
       });
     },    
     get: function(req, res) {
@@ -73,36 +74,38 @@ module.exports = function(schema) {
           }).sort( { data: 1 } );
     },
     UpdatePlacar: function(req, res) {
+      autenticacao.authenticate(req, res, function(){
+        var query = {
+          "_id": req.body._id
+        };
 
-      var query = {
-        "_id": req.body._id
-      };
+        var update = req.body.jogo;
+        var ganhador = req.body.ganhador;
 
-      var update = req.body.jogo;
-      var ganhador = req.body.ganhador;
-
-      Jogo.findOneAndUpdate(query, update, function(err, numAffected) {
-        if (err) throw err;
-        if (numAffected) {
-          atualizaProxJogo(numAffected, ganhador, res);
-        }
-        else return res.json({success: false, message: "jogo não encontrado."})
+        Jogo.findOneAndUpdate(query, update, function(err, numAffected) {
+          if (err) throw err;
+          if (numAffected) {
+            atualizaProxJogo(numAffected, ganhador, res);
+          }
+          else return res.json({success: false, message: "jogo não encontrado."})
+        });
       });
     },
     UpdateInfo: function(req, res) {
+      autenticacao.authenticate(req, res, function(){
+        var query = {
+          "_id": req.body._id
+        };
 
-      var query = {
-        "_id": req.body._id
-      };
+        var update = req.body;
 
-      var update = req.body;
-
-      Jogo.findOneAndUpdate(query, update, function(err, numAffected) {
-        if (err) throw err;
-        if (numAffected) {
-          return res.json({success: true, message: "Informações do jogo atualizadas!"});
-        }
-        else return res.json({success: false, message: "jogo não encontrado."})
+        Jogo.findOneAndUpdate(query, update, function(err, numAffected) {
+          if (err) throw err;
+          if (numAffected) {
+            return res.json({success: true, message: "Informações do jogo atualizadas!"});
+          }
+          else return res.json({success: false, message: "jogo não encontrado."})
+        });
       });
     }
   }

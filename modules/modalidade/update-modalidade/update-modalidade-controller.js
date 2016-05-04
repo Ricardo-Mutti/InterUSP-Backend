@@ -1,6 +1,7 @@
 module.exports = function(schema) {
   var Modalidade =  schema.modalidade;
   var Faculdade = schema.faculdade;
+  var autenticacao = require('../../autenticacao/autenticacao-controller.js');
 
   var faculdadesArrayMax = [];
   var faculdadesArrayMin = [];
@@ -154,15 +155,17 @@ module.exports = function(schema) {
 
   return {
     post: function(req, res) {
-      var id =  req.body.id;
-      var query = {id: id};
-      var update = req.body;
-      Modalidade.findOneAndUpdate(query, update, function(err, modalidade) {
-        if (err) throw err;
-        if (modalidade){
-          updateFaculdades(modalidade, res);
-        }
-        else return res.json({success: false, message: "Modalidade não encontrada!"});
+      autenticacao.authenticate(req, res, function(){
+        var id =  req.body.id;
+        var query = {id: id};
+        var update = req.body;
+        Modalidade.findOneAndUpdate(query, update, function(err, modalidade) {
+          if (err) throw err;
+          if (modalidade){
+            updateFaculdades(modalidade, res);
+          }
+          else return res.json({success: false, message: "Modalidade não encontrada!"});
+        });
       });
     }
   }
