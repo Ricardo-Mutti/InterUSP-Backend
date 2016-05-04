@@ -13,7 +13,7 @@ module.exports = function (schema, mongoose){
             return res.json({success:true, message:"Tracking de usuarios por faculdade", response: {tracking: trackingRes}});
           }
         }
-      });
+      }).sort( { users_count: -1 } );
     },
     post: function(req, res){
     	//facul_id must exist 
