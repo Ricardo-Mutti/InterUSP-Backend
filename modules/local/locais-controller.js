@@ -13,10 +13,17 @@ module.exports = function (schema){
 		},
 		postLocais: function(req, res){
 			autenticacao.authenticate(req, res, function(){
-				var query = { _id: req.body.id };
+				var query = {};
+				if(req.body._id) query._id = req.body._id;
+				else{
+					var local = new Local(req.body);
+					query._id = local._id;
+				}
 				var update = req.body;
 
-				Local.findOneAndUpdate(query, update, {upsert: true, new: true}, function(err, onibus){
+				Local.findOneAndUpdate(query, update, {upsert: true, new: true}, function(err){
+					if (err) throw err;
+
 			    	return res.json({success: true, message: "Locais atualizados"});
 				})
 			});
