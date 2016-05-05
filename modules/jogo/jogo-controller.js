@@ -101,6 +101,7 @@ module.exports = function(schema) {
 
         Jogo.findOneAndUpdate(query, update, function(err, numAffected) {
           if (err) throw err;
+
           if (numAffected) {
             return res.json({success: true, message: "Informações do jogo atualizadas!"});
           }
