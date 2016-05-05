@@ -5,7 +5,10 @@ module.exports = function(schema) {
 
   return {
     get: function(req, res) {
-      Modalidade.find(function(err, dbModalidades) {
+      var query = {};
+      if(req.query.id) query.id = req.query.id;
+
+      Modalidade.find(query, function(err, dbModalidades) {
         if (err) throw err;
         if (dbModalidades) {
           return res.json({success: true, message: "Modalidade!", response: {modalidades: dbModalidades}});
