@@ -44,8 +44,6 @@ module.exports = function(schema) {
                 arrayModalidades.push(modalidadePorFaculdade);
               }
               arrayModalidades.sort(function(a, b) {
-                if(!b.pontuacao_total) return a;
-                else if (!a.pontuacao_total) return b;
                 return b.pontuacao_total - a.pontuacao_total;
               });
               return res.json({success: true, message: "Modalidade!", response: {modalidades: arrayModalidades}});
