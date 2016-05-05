@@ -17,7 +17,10 @@ module.exports = function (schema){
 			});
 		},
 		get: function (req, res){
-			Onibus.find(function(err, onibus){
+			var query = {};
+			if(req.query.faculdade) query.facul_id = req.query.faculdade;
+
+			Onibus.find(query, function(err, onibus){
 		    	return res.json({success: true, message: "Onibus encontrados", response: {onibus: onibus}});
 			})
 		}
