@@ -13,7 +13,7 @@ module.exports = function (schema){
 		},
 		postLocais: function(req, res){
 			autenticacao.authenticate(req, res, function(){
-				var query = { id: req.body.id };
+				var query = { _id: req.body.id };
 				var update = req.body;
 
 				Local.findOneAndUpdate(query, update, {upsert: true, new: true}, function(err, onibus){
