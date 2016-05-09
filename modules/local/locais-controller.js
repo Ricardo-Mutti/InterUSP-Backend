@@ -20,7 +20,14 @@ module.exports = function (schema){
 					var local = new Local(req.body);
 					query._id = local._id;
 				}
-				var update = req.body;
+				var update = {};
+				update.nome = req.body.nome;
+				update.descricao = req.body.descricao;
+				update.foto = req.body.foto;
+				update.coordenadas = [];
+				update.coordenadas[0] = req.body.longitude;
+				update.coordenadas[1] = req.body.latitude;
+				update.tipo = req.body.tipo; 
 
 				Local.findOneAndUpdate(query, update, {upsert: true, new: true}, function(err){
 					if (err) throw err;
