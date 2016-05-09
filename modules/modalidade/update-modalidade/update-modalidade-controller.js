@@ -163,49 +163,49 @@ module.exports = function(schema) {
         var update = {};
         update.pontuacao_total = [];
         if(req.body.total1){
-          update.pontuacao_total.push(req.body.total1);
+          update.pontuacao_total.push({faculdade:1, pontuacao:parseInt(req.body.total1)});
         }
         if(req.body.total2){
-          update.pontuacao_total.push(req.body.total2);
+          update.pontuacao_total.push({faculdade:2, pontuacao:parseInt(req.body.total2)});
         }
         if(req.body.total3){
-          update.pontuacao_total.push(req.body.total3);
+          update.pontuacao_total.push({faculdade:3, pontuacao:parseInt(req.body.total3)});
         }
         if(req.body.total4){
-          update.pontuacao_total.push(req.body.total4);
+          update.pontuacao_total.push({faculdade:4, pontuacao:parseInt(req.body.total4)});
         }
         if(req.body.total5){
-          update.pontuacao_total.push(req.body.total5);
+          update.pontuacao_total.push({faculdade:5, pontuacao:parseInt(req.body.total5)});
         }
         if(req.body.total6){
-          update.pontuacao_total.push(req.body.total6);
+          update.pontuacao_total.push({faculdade:6, pontuacao:parseInt(req.body.total6)});
         }
         if(req.body.total7){
-          update.pontuacao_total.push(req.body.total7);
+          update.pontuacao_total.push({faculdade:7, pontuacao:parseInt(req.body.total7)});
         }
         if(req.body.total8){
-          update.pontuacao_total.push(req.body.total8);
+          update.pontuacao_total.push({faculdade:8, pontuacao:parseInt(req.body.total8)});
         }
 
         update.pontuacao_max = [];
-        update.pontuacao_max.push(req.body.max1);
-        update.pontuacao_max.push(req.body.max2);
-        update.pontuacao_max.push(req.body.max3);
-        update.pontuacao_max.push(req.body.max4);
-        update.pontuacao_max.push(req.body.max5);
-        update.pontuacao_max.push(req.body.max6);
-        update.pontuacao_max.push(req.body.max7);
-        update.pontuacao_max.push(req.body.max8);
+        update.pontuacao_max.push({faculdade:1, pontuacao:parseInt(req.body.max1)});
+        update.pontuacao_max.push({faculdade:2, pontuacao:parseInt(req.body.max2)});
+        update.pontuacao_max.push({faculdade:3, pontuacao:parseInt(req.body.max3)});
+        update.pontuacao_max.push({faculdade:4, pontuacao:parseInt(req.body.max4)});
+        update.pontuacao_max.push({faculdade:5, pontuacao:parseInt(req.body.max5)});
+        update.pontuacao_max.push({faculdade:6, pontuacao:parseInt(req.body.max6)});
+        update.pontuacao_max.push({faculdade:7, pontuacao:parseInt(req.body.max7)});
+        update.pontuacao_max.push({faculdade:8, pontuacao:parseInt(req.body.max8)});
 
         update.pontuacao_min = [];
-        update.pontuacao_min.push(req.body.min1);
-        update.pontuacao_min.push(req.body.min2);
-        update.pontuacao_min.push(req.body.min3);
-        update.pontuacao_min.push(req.body.min4);
-        update.pontuacao_min.push(req.body.min5);
-        update.pontuacao_min.push(req.body.min6);
-        update.pontuacao_min.push(req.body.min7);
-        update.pontuacao_min.push(req.body.min8);
+        update.pontuacao_min.push({faculdade:1, pontuacao:parseInt(req.body.min1)});
+        update.pontuacao_min.push({faculdade:2, pontuacao:parseInt(req.body.min2)});
+        update.pontuacao_min.push({faculdade:3, pontuacao:parseInt(req.body.min3)});
+        update.pontuacao_min.push({faculdade:4, pontuacao:parseInt(req.body.min4)});
+        update.pontuacao_min.push({faculdade:5, pontuacao:parseInt(req.body.min5)});
+        update.pontuacao_min.push({faculdade:6, pontuacao:parseInt(req.body.min6)});
+        update.pontuacao_min.push({faculdade:7, pontuacao:parseInt(req.body.min7)});
+        update.pontuacao_min.push({faculdade:8, pontuacao:parseInt(req.body.min8)});
 
         console.dir(update);
         Modalidade.findOneAndUpdate(query, update, function(err, modalidade) {
