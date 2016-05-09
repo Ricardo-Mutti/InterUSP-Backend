@@ -158,7 +158,12 @@ module.exports = function(schema) {
       autenticacao.authenticate(req, res, function(){
         var id =  req.body.id;
         var query = {id: id};
-        var update = req.body;
+        
+        var update = {};
+        if(req.body.pontuacao_total) update.pontuacao_total = req.body.pontuacao_total;
+        update.pontuacao_max = req.body.pontuacao_max;
+        update.pontuacao_min = req.body.pontuacao_min;
+
         console.dir(update);
         Modalidade.findOneAndUpdate(query, update, function(err, modalidade) {
           if (err) throw err;
