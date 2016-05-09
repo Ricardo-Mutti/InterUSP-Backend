@@ -13,6 +13,7 @@ module.exports = function (schema){
 		},
 		postLocais: function(req, res){
 			autenticacao.authenticate(req, res, function(){
+				console.dir(req.body);
 				var query = {};
 				if(req.body._id) query._id = req.body._id;
 				else{

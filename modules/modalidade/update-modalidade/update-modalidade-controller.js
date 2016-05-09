@@ -159,6 +159,7 @@ module.exports = function(schema) {
         var id =  req.body.id;
         var query = {id: id};
         var update = req.body;
+        console.dir(update);
         Modalidade.findOneAndUpdate(query, update, function(err, modalidade) {
           if (err) throw err;
           if (modalidade){
