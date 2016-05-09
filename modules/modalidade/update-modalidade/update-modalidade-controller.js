@@ -158,11 +158,11 @@ module.exports = function(schema) {
       autenticacao.authenticate(req, res, function(){
         var id =  req.body.id;
         var query = {id: id};
-        
-        var update = {};
-        if(req.body.pontuacao_total) update.pontuacao_total = req.body.pontuacao_total;
-        update.pontuacao_max = req.body.pontuacao_max;
-        update.pontuacao_min = req.body.pontuacao_min;
+
+        var update = new Modalidade(req.body);
+        // if(req.body.pontuacao_total) update.pontuacao_total = req.body.pontuacao_total;
+        // update.pontuacao_max = req.body.pontuacao_max;
+        // update.pontuacao_min = req.body.pontuacao_min;
 
         console.dir(update);
         Modalidade.findOneAndUpdate(query, update, function(err, modalidade) {
