@@ -79,7 +79,11 @@ module.exports = function(schema) {
           "_id": req.body._id
         };
 
-        var update = req.body.jogo;
+        var jogo = {};
+        jogo.placar_1 = req.body.placar_1;                
+        jogo.placar_2 = req.body.placar_2;
+
+        var update = jogo;
         var ganhador = req.body.ganhador;
 
         Jogo.findOneAndUpdate(query, update, function(err, numAffected) {
