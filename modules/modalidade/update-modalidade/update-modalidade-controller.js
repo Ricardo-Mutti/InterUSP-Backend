@@ -209,7 +209,7 @@ module.exports = function(schema) {
 
         console.dir(update);
         Modalidade.findOneAndUpdate(query, update, function(err, modalidade) {
-          if (err) throw err;
+
           if (modalidade){
             updateFaculdades(modalidade, res);
           }
