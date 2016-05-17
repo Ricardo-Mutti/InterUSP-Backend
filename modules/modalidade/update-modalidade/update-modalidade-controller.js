@@ -163,28 +163,28 @@ module.exports = function(schema) {
         var update = {};
         update.pontuacao_total = [];
         if(req.body.total1){
-          update.pontuacao_total.push({faculdade:1, pontuacao:parseInt(req.body.total1)});
+          update.pontuacao_total.push({faculdade:1, pontuacao:parseInt(req.body.total1), posicao:parseInt(req.body.posicao1)});
         }
         if(req.body.total2){
-          update.pontuacao_total.push({faculdade:2, pontuacao:parseInt(req.body.total2)});
+          update.pontuacao_total.push({faculdade:2, pontuacao:parseInt(req.body.total2), posicao:parseInt(req.body.posicao2)});
         }
         if(req.body.total3){
-          update.pontuacao_total.push({faculdade:3, pontuacao:parseInt(req.body.total3)});
+          update.pontuacao_total.push({faculdade:3, pontuacao:parseInt(req.body.total3), posicao:parseInt(req.body.posicao3)});
         }
         if(req.body.total4){
-          update.pontuacao_total.push({faculdade:4, pontuacao:parseInt(req.body.total4)});
+          update.pontuacao_total.push({faculdade:4, pontuacao:parseInt(req.body.total4), posicao:parseInt(req.body.posicao4)});
         }
         if(req.body.total5){
-          update.pontuacao_total.push({faculdade:5, pontuacao:parseInt(req.body.total5)});
+          update.pontuacao_total.push({faculdade:5, pontuacao:parseInt(req.body.total5), posicao:parseInt(req.body.posicao5)});
         }
         if(req.body.total6){
-          update.pontuacao_total.push({faculdade:6, pontuacao:parseInt(req.body.total6)});
+          update.pontuacao_total.push({faculdade:6, pontuacao:parseInt(req.body.total6), posicao:parseInt(req.body.posicao6)});
         }
         if(req.body.total7){
-          update.pontuacao_total.push({faculdade:7, pontuacao:parseInt(req.body.total7)});
+          update.pontuacao_total.push({faculdade:7, pontuacao:parseInt(req.body.total7), posicao:parseInt(req.body.posicao7)});
         }
         if(req.body.total8){
-          update.pontuacao_total.push({faculdade:8, pontuacao:parseInt(req.body.total8)});
+          update.pontuacao_total.push({faculdade:8, pontuacao:parseInt(req.body.total8), posicao:parseInt(req.body.posicao8)});
         }
 
         update.pontuacao_max = [];

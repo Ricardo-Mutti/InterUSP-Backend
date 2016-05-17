@@ -8,7 +8,8 @@ if (env === 'development') {
 
 // production only
 else if (env === 'production') {
-  mongoURI = 'mongodb://interusp:interusp@ec2-52-90-169-151.compute-1.amazonaws.com:27017/interusp';
+  exports.mongoURI = 'mongodb://interusp:interusp@ec2-52-201-135-248.compute-1.amazonaws.com:27017/interusp';
 }
 
 exports.apiSecret = 'appsimples-interusp-api-secret';
+
